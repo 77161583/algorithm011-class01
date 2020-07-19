@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScappleDocument Version="1.1" ID="C1FA75CC-B63C-4A65-ACEF-405BA650202F">
+    <Notes>
+        <Note ID="0" FontSize="12.0" Position="654.664062,352.628906" Width="58.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>二分查找</String>
+        </Note>
+        <Note ID="2" FontSize="12.0" Position="137.0,116.0" Width="379.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1">0.794796 0.560965 0.58607</Border>
+                <Fill>0.993495 0.701207 0.732587</Fill>
+            </Appearance>
+            <String>前提： 必须在有序的情况下进行查找，无序的情况只能从头到尾遍历
+
+1.目标函数的单调性（单调递增或者递减）
+
+2.存在上下边界（bounded）
+
+3.能够通过索引访问（index accessible）</String>
+            <ConnectedNoteIDs>1</ConnectedNoteIDs>
+            <Formatting>
+                <FormatRange Bold="Yes">0,3</FormatRange>
+                <FormatRange Bold="Yes">3,1</FormatRange>
+                <FormatRange Bold="Yes">4,27</FormatRange>
+                <FormatRange Bold="Yes">33,2</FormatRange>
+                <FormatRange Bold="Yes">35,18</FormatRange>
+                <FormatRange Bold="Yes">53,4</FormatRange>
+                <FormatRange Bold="Yes">57,7</FormatRange>
+                <FormatRange Bold="Yes">64,7</FormatRange>
+                <FormatRange Bold="Yes">71,1</FormatRange>
+                <FormatRange Bold="Yes">72,4</FormatRange>
+                <FormatRange Bold="Yes">76,9</FormatRange>
+                <FormatRange Bold="Yes">85,16</FormatRange>
+                <FormatRange Bold="Yes">101,1</FormatRange>
+            </Formatting>
+        </Note>
+        <Note ID="3" FontSize="12.0" Position="865.769531,79.191406" Width="469.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1">0.798177 0.714184 0.522055</Border>
+                <Fill>0.997722 0.89273 0.652569</Fill>
+            </Appearance>
+            <String>代码实现：
+/**
+
+ * 循环数组中找指定元素
+
+ * @param array $numbers
+
+ * @param [type] $find
+
+ *
+
+ * @return void
+
+ * @date 2018/11/27
+
+ * @author yuanliandu &lt;yuanliandu@qq.com&gt;
+
+ */
+
+function searchCircularArray(array $numbers,$find) {
+
+    $length = count($numbers);
+
+    $low = 0;
+
+    $high = $length - 1;
+
+
+
+    while($low &lt;= $high) {
+
+        $mid = $low + (($high-$low)&gt;&gt;1);
+
+        if($numbers[$mid] === $find) {
+
+            return $mid;
+
+        }
+
+
+
+        if($numbers[$low] &gt; $numbers[$mid]) {
+
+            // 后半部分是有序数组
+
+           if(($numbers[$mid] &lt; $find) &amp;&amp; ($numbers[$high] &gt;= $find)) {
+
+               if($numbers[$high] === $find)  return $high;
+
+                //在后半个区间内
+
+                $low = $mid + 1;
+
+           }else {
+
+               $high = $mid - 1;
+
+           }
+
+        }else {
+
+           // 前半部分是有序的
+
+           if(($numbers[$low] &lt;= $find) &amp;&amp; ($numbers[$mid] &gt; $find)) {
+
+               // 在有序区间内
+
+               if($numbers[$low] === $find)  return $low;
+
+               $high = $mid - 1;
+
+           }else {
+
+               $low = $mid + 1;
+
+           }
+
+        }
+
+        
+
+    }
+
+    return -1;
+
+}
+</String>
+            <ConnectedNoteIDs>1</ConnectedNoteIDs>
+        </Note>
+    </Notes>
+    <BackgroundShapes>
+        <Shape ID="1" Sticky="Yes" Position="629.433594,335.167969" Width="112.0" Height="61.0">
+            <Appearance>
+                <Border Weight="1">0.561855 0.71062 0.779401</Border>
+                <Fill>0.702319 0.888276 0.974252</Fill>
+            </Appearance>
+            <ConnectedNoteIDs>2-3</ConnectedNoteIDs>
+        </Shape>
+    </BackgroundShapes>
+    <NoteStyles>
+        <Style Name="Bubble (Blue)" ID="8BFD09E6-9573-413E-BF53-DA2C33853AB1" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.561855 0.71062 0.779401</BorderColor>
+            <FillColor>0.702319 0.888276 0.974252</FillColor>
+        </Style>
+        <Style Name="Bubble (Green)" ID="0F5A1097-8513-4513-8D30-06CE5261929D" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.572684 0.758969 0.558154</BorderColor>
+            <FillColor>0.715855 0.948712 0.697692</FillColor>
+        </Style>
+        <Style Name="Bubble (Pink)" ID="14EE1B89-B6B4-4759-AED3-90B5B93F850F" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.794796 0.560965 0.58607</BorderColor>
+            <FillColor>0.957566 0.766747 0.999616</FillColor>
+        </Style>
+        <Style Name="Bubble (Red)" ID="FABAEC11-7D29-4FFE-B46A-72829E7C693A" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.794796 0.560965 0.58607</BorderColor>
+            <FillColor>0.993495 0.701207 0.732587</FillColor>
+        </Style>
+        <Style Name="Bubble (Yellow)" ID="59ECF811-EF40-4734-8281-B4707CA03ED6" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.798177 0.714184 0.522055</BorderColor>
+            <FillColor>0.997722 0.89273 0.652569</FillColor>
+        </Style>
+        <Style Name="Red Text" ID="3394B62B-9F25-4B1B-9C28-4B818931628E" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="Yes" AffectNoteBody="No" AffectFade="No">
+            <TextColor>0.985948 0.0 0.026951</TextColor>
+        </Style>
+        <Style Name="Title Text" ID="3ED21623-1478-46D7-86FA-A9A37AC801D1" AffectFontStyle="Yes" AffectAlignment="Yes" AffectTextColor="No" AffectNoteBody="No" AffectFade="No">
+            <FontSize>28.0</FontSize>
+            <IsBold>Yes</IsBold>
+        </Style>
+    </NoteStyles>
+    <UISettings>
+        <BackgroundColor>0.999767 0.98837 0.949907</BackgroundColor>
+        <DefaultFont>Helvetica</DefaultFont>
+    </UISettings>
+    <PrintSettings PaperSize="595.0,842.0" LeftMargin="72.0" RightMargin="72.0" TopMargin="90.0" BottomMargin="90.0" PaperType="iso-a4" Orientation="Portrait" HorizontalPagination="Clip" VerticalPagination="Auto" ScaleFactor="1.0" HorizontallyCentered="Yes" VerticallyCentered="Yes" Collates="Yes" PagesAcross="1" PagesDown="1"></PrintSettings>
+</ScappleDocument>
